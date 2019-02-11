@@ -1,0 +1,108 @@
+﻿@{
+	ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+	<h1>ASP.NET</h1>
+	<p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+	<p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+</div>
+
+<div class="row">
+	<p>The time is @DateTime.Now</p>
+</div>
+
+@{
+	var greeting = "Welcome to our site!";
+	var weekDay = DateTime.Now.DayOfWeek;
+	var greetingMessage = greeting + " Here in Huston it is: " + weekDay;
+}
+
+<p>The greeting is: @greetingMessage</p>
+
+<p>The greeting is: @greetingMessage</p>
+@RenderPage("Bogdi.cshtml")
+
+@{
+	if (IsPost)
+	{
+		string companyname = Request["CompanyName"];
+		string contactname = Request["ContactName"];
+		<p>
+			You entered: <br>
+			Company Name: @companyname <br>
+			Contact Name: @contactname
+		</p>
+	}
+	else
+	{
+		<form method="post" action="">
+			Company Name:<br>
+			<input type="text" name="CompanyName" value=""><br>
+			Contact Name:<br><br>
+			<input type="text" name="ContactName" value=""><br><br>
+			<input type="submit" value="Submit" class="submit">
+		</form>
+	}
+}
+
+@{
+	var imagePath = "";
+	if (Request["Choice"] != null)
+	{ imagePath = "" + Request["Choice"]; }
+}
+
+
+	<h1>Display Images</h1>
+	<form method="post" action="">
+		I want to see:
+		<select name="Choice">
+			<option value="~/Content/Poze/Pic1.jpg">Photo 1</option>
+			<option value="~/Content/Poze/Pic2.jpg">Photo 2</option>
+			<option value="~/Content/Poze/Pic3.jpg">Photo 3</option>
+		</select>
+		<input type="submit" value="Submit">
+		@if (imagePath != "")
+	{
+		<p>
+			<img src="@imagePath" alt="Sample">
+		</p>
+}
+
+		@{
+		var dataFile = Server.MapPath("~/App_Data/Persons.txt");
+		Array userData = File.ReadAllLines(dataFile);
+		}
+
+		
+
+			<h1>Reading Data from a File</h1>
+			@foreach (string dataLine in userData)
+		{
+			foreach (string dataItem in dataLine.Split(','))
+			{
+				@dataItem <text>&nbsp;</text>}
+		<br>
+}
+
+			@*<div class="row">
+				<div class="col-md-4">
+					<h2>Getting started</h2>
+					<p>
+						ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
+						enables a clean separation of concerns and gives you full control over markup
+						for enjoyable, agile development.
+					</p>
+					<p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+				</div>
+				<div class="col-md-4">
+					<h2>Get more libraries</h2>
+					<p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
+					<p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+				</div>
+				<div class="col-md-4">
+					<h2>Web Hosting</h2>
+					<p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+					<p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+				</div>
+			</div>*@
