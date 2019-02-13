@@ -1,0 +1,35 @@
+﻿
+@{
+	ViewBag.Title = "Bogdi";
+
+}
+
+<h2>Bogdi</h2>
+
+@{
+	Random rnd = new Random();
+	for (int i = 1; i <= (int)ViewData["numlines"]; i++)
+	{
+		int randNr = rnd.Next(1, 4);
+		switch (randNr)
+		{
+			case 1:
+				{
+					<button>My BUTTON</button><br/>
+					break;
+				}
+			case 2:
+				{
+					<input value="My INPUT"/><br/>
+					break;
+				}
+			case 3:
+				{
+					<textarea>My TA</textarea><br/>
+					break;
+				}
+		}
+	}
+
+}
+
